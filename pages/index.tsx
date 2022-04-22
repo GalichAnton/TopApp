@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { Button, Htag } from "../components";
+import { Button, Htag, P, Tag } from "../components";
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +14,19 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <Htag tag={"h1"}>Hello</Htag>
-        <Button appearance={"primary"}>Click</Button>
+        <Button appearance={"primary"} arrow={"right"}>
+          Click
+        </Button>
+        <Button appearance={"ghost"} arrow={"down"}>
+          Click
+        </Button>
+        <P size={"s"}>Lorem ipsum dolor</P>
+        <Tag size={"s"} color={"red"}>
+          Tag
+        </Tag>
+        <Tag size={"m"} color={"green"}>
+          Tag
+        </Tag>
       </main>
     </div>
   );

@@ -5,7 +5,7 @@ import styles from "./Menu.module.css";
 import cn from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { firstLevelMenu } from "../../helpres/helpers";
+import { firstLevelMenu } from "../../helpers/helpers";
 
 export const Menu = (): JSX.Element => {
   const { menu, setMenu, firstCategory } = useContext(AppContext);

@@ -3,9 +3,9 @@ import React from "react";
 import axios from "axios";
 import { MenuItem } from "../../interfaces/menuInterface";
 import { withLayout } from "../../layout/Layout";
-import { firstLevelMenu } from "../../helpres/helpers";
+import { firstLevelMenu } from "../../helpers/helpers";
 import { ParsedUrlQuery } from "querystring";
-import { API } from "../../helpres/api";
+import { API } from "../../helpers/api";
 function Type({ firstCategory }: TypeProps): JSX.Element {
   return <>Type: {firstCategory}</>;
 }

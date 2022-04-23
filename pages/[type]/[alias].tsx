@@ -10,9 +10,16 @@ import { MenuItem } from "../../interfaces/menuInterface";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/pageInterface";
 import { ParsedUrlQuery } from "querystring";
 import { ProductModel } from "../../interfaces/productInterface";
-import { firstLevelMenu } from "../../helpres/helpers";
-const TopPage: NextPage<CoursePageProps> = ({ products }) => {
-  return <>{products && products.length}</>;
+import { firstLevelMenu } from "../../helpers/helpers";
+import { TopPageComponent } from "../../page-components";
+const TopPage: NextPage<TopPageProps> = ({ products, firstCategory, page }) => {
+  return (
+    <TopPageComponent
+      firstCategory={firstCategory}
+      products={products}
+      page={page}
+    />
+  );
 };
 
 export default withLayout(TopPage);
@@ -37,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: true,
   };
 };
-export const getStaticProps: GetStaticProps<CoursePageProps> = async ({
+export const getStaticProps: GetStaticProps<TopPageProps> = async ({
   params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
@@ -78,7 +85,7 @@ export const getStaticProps: GetStaticProps<CoursePageProps> = async ({
   }
 };
 
-interface CoursePageProps extends Record<string, unknown> {
+interface TopPageProps extends Record<string, unknown> {
   menu: MenuItem[];
   page: TopPageModel;
   products: ProductModel[];

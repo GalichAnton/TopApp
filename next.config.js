@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   images: {
-    domains: ["courses-top.ru"],
+    domains: ["[type]-top.ru"],
   },
   webpack(config, options) {
     config.module.rules.push({

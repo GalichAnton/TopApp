@@ -1,10 +1,10 @@
 import { LayoutProps } from "./LayoutProps";
 import styles from "./Layout.module.css";
-import cn from "classnames";
 import { SideBar } from "./SideBar/SideBar";
 import { Header } from "./Header/Header";
 import { Footer } from "./Footer/Footer";
 import { FunctionComponent } from "react";
+import { AppContextProvider, IAppContext } from "../context/AppContext";
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
@@ -18,14 +18,16 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
   );
 };
 
-export const withLayout = <T extends Record<string, unknown>>(
+export const withLayout = <T extends Record<string, unknown> & IAppContext>(
   Component: FunctionComponent<T>
 ) => {
   return function withLayoutComponent(props: T) {
     return (
-      <Layout>
-        <Component {...props} />
-      </Layout>
+      <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      </AppContextProvider>
     );
   };
 };

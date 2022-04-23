@@ -1,11 +1,12 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { Button, Htag, P, Rating, Tag } from "../components";
 import { useState } from "react";
 import { withLayout } from "../layout/Layout";
+import axios from "axios";
+import { MenuItem } from "../interfaces/menuInterface";
 
-const Home: NextPage = () => {
+const Home: NextPage<HomePageProps> = ({ menu, firstCategory }) => {
   const [rating, setRating] = useState(3);
   return (
     <>
@@ -15,7 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Htag tag={"h1"}>Hello</Htag>
+      <Htag tag={"h1"}>{firstCategory}</Htag>
       <Button appearance={"primary"} arrow={"right"}>
         Click
       </Button>
@@ -35,3 +36,19 @@ const Home: NextPage = () => {
 };
 
 export default withLayout(Home);
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const firstCategory = 0;
+  const { data: menu } = await axios.post<MenuItem[]>(
+    process.env.NEXT_PUBLIC_DOMAIN + "/api/top-page/find",
+    { firstCategory }
+  );
+  return {
+    props: { menu, firstCategory },
+  };
+};
+
+interface HomePageProps extends Record<string, unknown> {
+  menu: MenuItem[];
+  firstCategory: number;
+}

@@ -10,3 +10,4 @@ export * from "./Advantages/Advantages";
 export * from "./Sort/Sort";
 export * from "./Product/Product";
 export * from "./Divider/Divider";
+export * from "./Up/Up";
